@@ -1,0 +1,32 @@
+const images = ["image1.jpeg", "image2.jpeg", "image3.jpeg", "image3.jpeg"];
+let currentIndex = 0;
+
+const currentImage = document.getElementById("current-image");
+const prevButton = document.getElementById("prev-btn");
+const nextButton = document.getElementById("next-btn");
+const thumbnails = document.querySelectorAll(".thumbnail");
+
+// Function to change the main image
+function updateImage(index) {
+  currentImage.src = images[index];
+}
+
+// Navigate to the previous image
+prevButton.addEventListener("click", () => {
+  currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+  updateImage(currentIndex);
+});
+
+// Navigate to the next image
+nextButton.addEventListener("click", () => {
+  currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+  updateImage(currentIndex);
+});
+
+// Update the main image when a thumbnail is clicked
+thumbnails.forEach((thumbnail, index) => {
+  thumbnail.addEventListener("click", () => {
+    currentIndex = index;
+    updateImage(currentIndex);
+  });
+});
